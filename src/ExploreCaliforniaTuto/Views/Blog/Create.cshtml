@@ -1,0 +1,46 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model ExploreCaliforniaTuto.Models.Post
+
+@{
+    Layout = "_Layout";
+}
+
+<h1>Create Blof Post</h1>
+
+<fieldset>
+
+    <form asp-action="Create" asp-controller="Blog">
+        <div asp-validation-summary="ModelOnly" class="input-validation-error"></div>
+        <p>
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" placeholder="Blog Post title" />
+            <span asp-validation-for="Title"></span>
+        </p>
+        <p>
+            <label asp-for="Body"></label>
+            <textarea asp-for="Body" class="form-control" placeholder="Blog content"></textarea>
+            <span asp-validation-for="Body"></span>
+        </p>
+        <p>
+            <button type="submit">Create Post</button>
+        </p>
+    </form>
+
+    @*@using (Html.BeginForm())
+        {
+            <p>
+                @Html.LabelFor(o => o.Title)
+                @Html.EditorFor(o => o.Title)
+                @Html.ValidationMessageFor(o => o.Title)
+            </p>
+            <p>
+                @Html.LabelFor(o => o.Body)
+                @Html.EditorFor(o => o.Body)
+                @Html.ValidationMessageFor(o => o.Body)
+            </p>
+
+            <p>
+                <button type="submit">Create Post</button>
+            </p>
+        }*@
+</fieldset>
