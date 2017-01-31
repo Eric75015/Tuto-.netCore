@@ -9,15 +9,21 @@ namespace ExploreCaliforniaTuto.ViewComponents
 {
     public class MonthlySpecialsViewComponent : ViewComponent
     {
-        private readonly SpecialsDataContext _specials;
-        public MonthlySpecialsViewComponent(SpecialsDataContext specials)
+        //private readonly SpecialsDataContext _specials;
+        //public MonthlySpecialsViewComponent(SpecialsDataContext specials)
+        //{
+        //    _specials = specials;
+
+        //}
+        private readonly BlogDataContext _db;
+        public MonthlySpecialsViewComponent(BlogDataContext db)
         {
-            _specials = specials;
+            _db = db;
 
         }
         public IViewComponentResult Invoke()
         {
-            var spec = _specials.GetMonthlySpecials();
+            var spec = _db.Specials.ToArray();
             return View(spec);
         }
     }
