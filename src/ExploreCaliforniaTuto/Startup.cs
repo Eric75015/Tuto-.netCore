@@ -6,6 +6,7 @@ using ExploreCaliforniaTuto.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,8 +44,14 @@ namespace ExploreCaliforniaTuto
                     var connect = conf.GetConnectionString("BlogDataContext");
                     builder.UseSqlServer(connect);
                 }
-
             );
+            services.AddDbContext<IdentityDataContext>(builder =>
+            {
+                var connect = conf.GetConnectionString("IdentityDataContext");
+                builder.UseSqlServer(connect);
+            }
+            );
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityDataContext>();
 
             services.AddMvc();
         }
@@ -75,6 +82,8 @@ namespace ExploreCaliforniaTuto
 
                 await next();
             });
+
+            app.UseIdentity();
 
             app.UseMvc(builder => builder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
 

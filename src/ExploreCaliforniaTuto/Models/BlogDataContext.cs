@@ -15,5 +15,6 @@ namespace ExploreCaliforniaTuto.Models
 
         public DbSet<Post> Posts { get; set; }
         public DbSet<Special> Specials { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
